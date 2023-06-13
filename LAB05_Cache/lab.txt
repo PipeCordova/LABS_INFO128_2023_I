@@ -1,0 +1,67 @@
+# LAB04 CACHE
+En este laboratorio usted trabajara en grupo para crear un programa que genera 
+distintos comportamientos de rendimiento para un algoritmo simple, solo por variar 
+el espaciado entre los valores.
+Subir codigo fuente y mini-informe con graficos+analisis a la tarea creada en SIVEDUCMD.
+
+NOTA: hacer programa C/C++ que se pueda ejecutar de esta forma:
+    ./prog n gap
+    ej:
+        ./prog 10000 100
+
+    n = tamano del array
+    gap = tamano del gap (espacio) entre los valores.
+    
+    El programa debera generar el arreglo con numeros enteros aleatorios, 
+	espaciados por GAP ceros entre cada valor.
+    
+    NOTA:
+    La compilacion bastaria con:  g++ main.cpp -fopenmp -o prog, hacer "include <omp.h>"
+	    - Forma de medir tiempo
+		... (1) crear el arreglo...
+		double t1 = omp_get_wtime();
+		..  (2) sumar los numeros;
+		double t2 = omp_get_wtime();
+		double tiempo = t2 - t1;
+    
+
+1) Hacer una funcion "gap_sum(array, n, gap)" que en cada valor valido, haga la suma 
+	desde ese valor hasta el ultimo. Respetar los GAPS (no accederlos).
+	NOTA:
+	- numero de accesos al arreglo se debe mantener siempre en `n`, sin importar el GAP. 
+	Es decir no se deben leer los ceros.
+		OJO: hacer array[i] ya es un acceso de lectura a la memoria.
+		
+	- NOTA: para una misma semilla, el resultado siempre debe ser el mismo.
+
+	- Ejemplo: ./prog 4 2
+		INPUT n=4: 1 2 3 4
+		Con GAP 2:
+		    Array:  1  0 0 2 0 0 3 0 0 4
+		    Result: 10 0 0 9 0 0 7 0 0 4 
+
+
+
+2) Experimentar que pasa con el rendimiento del programa (tiempo de ejecucion de la funcion gap_sum) 
+con n=10^7 cuando:
+    a) el GAP es 0
+    b) el GAP es 100
+    c) el GAP es 1000 (bajar el `n` si para este caso no cabe en RAM)
+    
+    
+
+
+
+3) Reportar los tiempos de computo en un breve informe con las secciones estandares y relacionar 
+los resultados con sus conocimientos de Cache de
+la CPU. Tambien hacer el grafico tiempo (y) vs n (x), esta vez variando n desde valores bajos 
+hasta 10^7, con los 3 modos de GAP.
+
+
+
+
+
+
+
+
+
