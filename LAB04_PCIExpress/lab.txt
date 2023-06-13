@@ -1,0 +1,58 @@
+# LAB: Midiendo Rendimiento de PCI Express
+# En este laboratorio usted hara un programa que medira el rendimiento de la interfaz PCI Express
+# entre CPU (RAM)  y GPU (VRAM)
+# Podra trabajar en grupo
+# Se recomienda usar 'nano' o 'vim' para programar dentro del servidor que se dejara disponible.:>k
+
+ACTIVIDAD:
+1) Entre, usando 'ssh', a la maquina "carbon", y trabaje en su carpeta de grupo
+    - ejemplo:
+        $ ssh info128@146.83.216.139
+        $ ls
+        grupo1   grupo2   grupo3 ....
+        $ cd grupo2
+        ...
+        etc...
+
+
+2) Averigue las caracteristicas hardware del servidor (CPU, Placa Madre, Memoria, GPU)
+    y su velocidad PCI-Express que utiliza esta maquina.
+    (pista: considere primero averiguar modelo de placa, GPU y consultar especificaciones en la WEB.)
+
+
+
+3) Estudie y entienda las funciones de ayuda que vienen incluidas. Explique que hace cada una.
+
+
+
+4) Utilice las funciones como herramientas para hacer un programa en 'main.cu' que copia 'n'
+    GBytes (dados como argumento al ejecutar) desde CPU a GPU y luego de vuelta.
+    - este programa es solo una prueba de transferencia, no debe realizar calculos.
+    - el programa se compila con el comando 'make'
+    - el programa se ejecuta como './prog n r' donde n esta en GBytes y r es la cantidad
+      de repeticiones de la transferencia hechos dentro.
+
+
+5) Medir el ancho de banda obtenido (GBytes/sec) de todos los bytes transferidos por el
+tiempo tomado. Utilizar el rango de 'n' en [0.5GB, 1GB, 1.5GB, ..., 10GB].
+En total deberia tener 20 puntos para graficar las siguientes curvas.
+
+    - Haga una curva del ancho de banda (GB/s), copiando de CPU -> GPU, barriendo 'n' usando 1 repeticion.
+    - Haga una curva del ancho de banda (GB/s), copiando de CPU -> GPU, barriendo 'n' usando 16 repeticiones.
+
+    - Haga una curva del ancho de banda (GB/s), copiando de GPU -> CPU, barriendo 'n' usando 1 repeticion.
+    - Haga una curva del ancho de banda (GB/s), copiando de GPU -> CPU, barriendo 'n' usando 16 repeticiones.
+
+    - Ubique todas las curvas en un mismo grafico, distinguidas por la leyenda que usted decida.
+
+6) Reportar los resultados en un informe (PDF) de maximo 3 paginas con lo siguiente:
+    - Introduccion a PCI-e y la importancia del ancho de banda en la computacion.
+    - Una tabla de las caracteristicas del hardware usado.
+    - Explicacion de la metodologia experimental (de que manera hizo los experimentos).
+    - Presentacion e interpretacion de los resultados de rendimiento.
+    - Una conclusion e inferencia de los resultados y conteste:
+        - a) Discuta los resultados y los principales hallazgos.
+        - b) Los resultados obtenidos cumplen con su expectativa de los anchos de banda
+             listados en teoria por PCIe ? (16x, 8x, 4x, 2x, etc). Si, no, por que cree?
+        - c) Contestar que esperaria que ocurra con el rendimiento si la cantidad de
+          canales PCIe se reduce a la mitad o a un cuarto de la que se esta utilizando en sus experimentos?
