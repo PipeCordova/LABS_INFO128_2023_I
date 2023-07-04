@@ -1,0 +1,37 @@
+LAB: ESCALABILIDAD CPU Y GPU
+
+En este laboratorio compararan la escalabilidad de rendimiento en CPU y GPU, usando SAXPY 
+como caso de uso.
+Puede usar el servidor dado por el profesor para hacer los experimentos.
+ssh info128@146.83.216.139 -p 22337
+passwd: llave publica ssh
+
+
+1) Medir los tiempos de ejecucion de SAXPY modo CPU, usando distinto numero de threads. 
+Use el rango de nucleos de la maquina.
+
+2) Medir los tiempos de ejecucion de SAXPY modo GPU, encontrar un tamano de bloque eficiente que 
+sea potencia de 2, entre 1 y 1024 usando valor adaptativo de numero de bloques (GPU_NB=-1). 
+Emplear el numero de bloques de forma analoga al numero de threads en 1). 
+Explore el rango de 1 a numSMs*32 bloques. numSMs es el numero de SMs de la GPU usada. 
+Use suficientes puntos para apreciar la curva.
+
+3) Graficar los tiempos de ejecucion de CPU y GPU usando al menos n=100*2^20  (~100 Millones). 
+El eje X contiene el numero de threads/bloques usados. Un solo grafico con las curvas necesarias.
+
+4) Graficar el speedup relativo a si mismo (RS), es decir respecto al mismo metodo usando 
+1 thread/bloque segun corresponda. Es decir, la curva CPU calcula RS respecto a 1 thread, 
+mientras que la curva GPU calcula speedup respecto a un bloque. Un solo grafico.
+
+5) Calcular el speedup de la GPU respecto a CPU. Usar `n` en el eje X, y speedup (tiempo_CPU/tiempo_GPU) 
+en eje Y. Un solo grafico.
+- Para los tiempos CPU la cantidad de threads se fija en la cantidad de nucleos de la CPU.
+- Para los tiempos GPU la cantidad de bloques se adapta segun el `n` 
+	(usar argumento GPU_NB=-1 al ejecutar)
+
+6) Concluya esta experiencia comentando sobre la escalabilidad de rendimiento lograda en CPU y GPU. 
+Comparelas y elabore una discusion sobre ventajas/desventajas.
+- Subir informe en siveducMD, maximo 4 paginas. Incluir las secciones estandares de un informe 
+bien hecho.
+- (3pts) Formalidad del Informe (bien escrito, con las secciones formales, titulo y bibliografia)
+- (3pts) Graficos bien hechos, mencionar hardware usado y conclusiones coherentes.
